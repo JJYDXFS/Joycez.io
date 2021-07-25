@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="JJYDXFS">
+
+
+
+
+
+<title>早期人类驯服博客主题 | JJYDXFS</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">JJYDXFS&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">JJYDXFS&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">早期人类驯服博客主题</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">JJYDXFS</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 25, 2021&nbsp;&nbsp;22:11:52</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>回顾我写博客不长的经历：从最早自己租服务器买域名基于 WordPress 搭了个博客，因为懒得维护和水平太差很快就废弃了；再后来用前端三剑客纯手写博客页面，很快因为相同的原因（对了，还得多加一个原因：<strong>丑陋</strong>）又废弃了；然后转向其他博客平台例如 CSDN 写一些技术博客，除了广告多点还算勉勉强强，反正纯技术博客写完没事我自己都不怎么会去看；之后投向 Github Page 的怀抱，才算是安定下来。刚部署好那阵访问速度还是个问题，现在估计也设了国内服务器，访问速度已经快了很多</p>
+<p>前端菜鸟当然还是使用已有的主题最便捷，但是想在前辈们写好的主题下做一些 DIY 可是不太容易。昨天又因为想自己加点东西而被困扰许久，想着开一篇博文记录我和博客主题斗智斗勇的“爱恨情仇”吧</p>
+<h2 id="Chic"><a href="#Chic" class="headerlink" title="Chic"></a>Chic</h2><p><a target="_blank" rel="noopener" href="https://github.com/Siricee/hexo-theme-Chic">Chic</a> 是我用过的第一个主题，也一直用到现在（2021-07-25留）</p>
+<p>Chic 让我深刻感受到前端设计师的审美能力和技术水平，这主题简约但又不至于简陋，该有的功能基本都有，我相当满意！</p>
+<h3 id="加新的iconfont"><a href="#加新的iconfont" class="headerlink" title="加新的iconfont"></a>加新的iconfont</h3><p>在配置文件 <code>_config.yml</code> 中可以选择在首页展示的链接图标：Twitter、QQ、微博啥的，只要在配置文件中取消对应行上的注释并加链接就行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># main menu navigation</span><br><span class="line">## links key words should not be changed.</span><br></pre></td></tr></table></figure>
+<p>注释里说不要修改链接的关键字。但我想把 lofter 的图标加在首页上，这在预设里是没有的。作为一个强迫症我一定得把新图标加上！于是乎开始折腾</p>
+<h4 id="从已知世界出发"><a href="#从已知世界出发" class="headerlink" title="从已知世界出发"></a>从已知世界出发</h4><p>在首页源码里看到图标用 unicode 表示了，想着图标应该是在什么 <code>fonts</code> 之类的文件夹里。在主题文件夹下搜索之后发现了 <code>iconfont</code> 文件夹，这事有门儿！</p>
+<p>文件夹下有 <code>.js</code> <code>.css</code> <code>.svg</code> 还有一堆字体文件 <code>.ttf</code> <code>.woff</code> <code>.woff2</code> <code>.eot</code></p>
+<p>打开<code>.js</code> <code>.css</code> <code>.svg</code> 发现预设的图标里面都有相应内容，于是依葫芦画瓢都在后面添上一份 lofter 版的（ps：我用的 lofter 图标来自<a target="_blank" rel="noopener" href="https://www.iconfont.cn/search/index?searchType=icon&amp;q=lofter">阿里巴巴矢量图标库</a>）</p>
+<p>重新生成、重新启动服务！果不其然失败了 …… 本来应该显示 lofter 图标的位置空无一物</p>
+<h4 id="探索字体的世界"><a href="#探索字体的世界" class="headerlink" title="探索字体的世界"></a>探索字体的世界</h4><p>我能看懂的部分都改了，所以这肯定是那些字体文件搞得鬼！可是我以前从来没有编辑过字体文件，先去找找工具：发现了一个超好用的轻量级在线字体编辑器 <a target="_blank" rel="noopener" href="https://kekee000.github.io/fonteditor/">FontEditor</a></p>
+<p>这可是个好东西，帮我看清了那些 <code>.ttf</code> <code>.woff</code> <code>.woff2</code> <code>.eot</code> 的内部构造</p>
+<p>简单看了看文档，把 lofter 图标编入字体文件中，然后生成、下载、替换</p>
+<p>重新生成、重新启动服务！果不其然又失败了 …… 本来应该显示 lofter 图标的位置空无一物</p>
+<p>这下可给我整不会了，怎么我都换字体文件了还一点变化没有？？？</p>
+<h4 id="开始瞎搞"><a href="#开始瞎搞" class="headerlink" title="开始瞎搞"></a>开始瞎搞</h4><p>我开始这里看看、那里改改，然后观察有没有发生变化（原始人类实锤！不过我还是有做备份的，不要莽）在 <code>demo.css</code> 里我修改了字体文件路径，然后 demo 页面可以正常显示 lofter 图标了！然而相同的操作并没有在实际页面中生效，我想我可能得放弃了……</p>
+<h4 id="福至心灵"><a href="#福至心灵" class="headerlink" title="福至心灵"></a>福至心灵</h4><p>要不怎么说强迫症呢，能轻易妥协都不能说是强迫症。在干了点别的事儿之后我又来折腾这个图标了。这回我大胆假设、小心求证、控制变量、逐步逼近真相。终于让我发现只要我改动 <code>iconfont.css</code> 里 <code>.woff2</code> 的 url 指向，页面图标就会全部消失，看来最终起作用的字体文件应该就是它</p>
+<p>在搜索了这一行引入的含义之后，我发现 <code>base64</code> 后面的那串超长乱码就是 <code>.woff2</code> 文件编码所得。由于手头的机子没有 base64 编码工具，就找了个转码工具 <a target="_blank" rel="noopener" href="https://hellogreg.github.io/woff2base/">Woff2Base</a></p>
+<p>替换编码之后 lofter 图标果然成功显示了！但是看上去比别的图标大了一点。想到设置显示的大小都是一样的，估计问题出在图标本身，这要处理一下倒也不是不行，用 AI 改一下大小再导出 svg 估计就可以 …… 吧。算了！我先忍忍，强迫症累了！</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>JJYDXFS</span>
+                    </p>
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%85%B6%E4%BB%96/"># 其他</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/07/24/%E5%B0%8F%E5%AD%A6%E6%9C%9F%E5%9B%9E%E9%A1%BE%E2%80%94%E2%80%94%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%BC%E5%90%88%E5%AE%9E%E8%B7%B5/">小学期回顾——大数据综合实践</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© JJYDXFS | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
