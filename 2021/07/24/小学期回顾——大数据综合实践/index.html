@@ -268,7 +268,7 @@
 <p><img src="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/CUC社交网络.gif" alt="CUC社交网络"></p>
 <p>接着用 D3.js 力导向图可视化了最大连通子图。以前画力导向图的时候都直接用的默认 node 顺序，这次需要使用 index 到 id 的映射，为了找解决方案居然还卡了个把小时（感谢作者已然把源码封装地很好，仅仅是看了一眼源码我就放弃了暴力魔改源码的念头）。抱着作者既然在<a target="_blank" rel="noopener" href="https://github.com/d3/d3-force#link_id">文档</a>里提到这个问题就一定会留路子的想法最终在官网 <a target="_blank" rel="noopener" href="https://observablehq.com/@d3/force-directed-graph">demo</a> 找到了需要的方法 <code>.force(&quot;link&quot;, d3.forceLink(links).id(d =&gt; d.id))</code>。这里默默吐槽在 stackoverflow 上看到的几个回答，也不知道是年代久远还是怎么回事，不仅没有提到这个方法，而且一致给出替代方案说让自己写映射函数……</p>
 <h2 id="Day9-——-0720"><a href="#Day9-——-0720" class="headerlink" title="Day9 —— 0720"></a>Day9 —— 0720</h2><p>今天一来先继续优化社交网络，把队友计算好的 PageRank 值和结点大小关联啥的</p>
-<p>完成实验3之后想到周五下午就要答辩。鉴于后面两个实验是没有参考代码，时间肯定非常紧张，但还是不太想放弃后面两个实验中的任何一个（而且专攻一个也不一定能做完，再堆人完不成的还是完不成👋不如都做多学一点）。昨天下午已经抽空分配了高频共现词算法的调研工作，今天初见眉目，所以先让高频共现词小队继续复现 Aprior 算法；然后集合其余成员开始规划最后的流式处理实验</p>
+<p>完成实验3之后想到周五下午就要答辩。鉴于后面两个实验是没有参考代码，时间肯定非常紧张，但还是不太想放弃后面两个实验中的任何一个（而且专攻一个也不一定能做完，再堆人完不成的还是完不成👋不如都做多学一点）。昨天下午已经抽空分配了高频共现词算法的调研工作，今天初见眉目，所以先让高频共现词小队继续复现 Apriori 算法；然后集合其余成员开始规划最后的流式处理实验</p>
 <p>对于最后一个实验，我倾向于在有限时间内先挑重点突破。也即是说对于诸如前端页面设计，后端从数据库读数据，使用已保存模型预测结果等等常规的开发流程，由于以前或多或少都是实现过的，通通先放一边，重点放在使用Kafka进行流式处理上：</p>
 <ul>
 <li>生成仿真数据写入Kafka</li>
@@ -289,9 +289,9 @@
 <li>为词云图更换停词表、一致小写</li>
 <li>对社交网络结点按 PageRank 值排序等等</li>
 </ol>
-<p>转到高频共现词：当时 Aprior 算法已经通过50行的小规模数据集测试。在听完原理说明后，我先写了一个简单脚本来切割多达 169,2082 行的大数据集以生成任意行数的测试数据集。按序测试渐增数据集时还遇到了一个小乌龙：原本好好运行的任务突然报了没有遇见过的 bug ，一查说是 jar 包冲突，让我们感到非常奇怪但又不敢贸然卸载 jar 包。最后发现是对面的 Kafka 小队使用 Spark Streaming 进行流式处理时需要使用 <code>streaming-kafka-0-8-assembly_2.11-2.4.0.jar</code> ，下载之后就直接分发到了集群的各个机器上导致包冲突（这也是我在 <strong>Day5</strong> 中写到不推荐第三种方法的原因）后来让 Kakfa 小队改用 <code>--jars</code> 跟随任务提交以避免包冲突</p>
+<p>转到高频共现词：当时 Apriori 算法已经通过50行的小规模数据集测试。在听完原理说明后，我先写了一个简单脚本来切割多达 169,2082 行的大数据集以生成任意行数的测试数据集。按序测试渐增数据集时还遇到了一个小乌龙：原本好好运行的任务突然报了没有遇见过的 bug ，一查说是 jar 包冲突，让我们感到非常奇怪但又不敢贸然卸载 jar 包。最后发现是对面的 Kafka 小队使用 Spark Streaming 进行流式处理时需要使用 <code>streaming-kafka-0-8-assembly_2.11-2.4.0.jar</code> ，下载之后就直接分发到了集群的各个机器上导致包冲突（这也是我在 <strong>Day5</strong> 中写到不推荐第三种方法的原因）后来让 Kakfa 小队改用 <code>--jars</code> 跟随任务提交以避免包冲突</p>
 <p>（对了，在集群上跑高频共现词的时候还出现了由于集群节点 Python 版本不一致而导致任务执行失败的情况，又是一通下载 Python 改 Python 指向。可能配好一个机子，其他直接用镜像是最好的）</p>
-<p>Aprior 算法停滞在 1w 行就无法继续下去了（似乎还把集群跑挂了一回，<code>master is unresponsive</code>  谁懂！）在老师的提示下我们开始尝试官网提供的模型 <a target="_blank" rel="noopener" href="https://spark.apache.org/docs/latest/ml-frequent-pattern-mining.html">Frequent Pattern Mining</a> 。我继续转战云平台死磕 Aprior 算法；由 slave5 开始探索 FPG</p>
+<p>Apriori 算法停滞在 1w 行就无法继续下去了（似乎还把集群跑挂了一回，<code>master is unresponsive</code>  谁懂！）在老师的提示下我们开始尝试官网提供的模型 <a target="_blank" rel="noopener" href="https://spark.apache.org/docs/latest/ml-frequent-pattern-mining.html">Frequent Pattern Mining</a> 。我继续转战云平台死磕 Apriori 算法；由 slave5 开始探索 FPG</p>
 <h2 id="Day11-——-0722"><a href="#Day11-——-0722" class="headerlink" title="Day11 —— 0722"></a>Day11 —— 0722</h2><p>上午基本是啥有用的也没干！光折腾暑假留校事项去了！</p>
 <p>完事儿之后考虑到明天下午就要答辩，大家需要提前一点开始准备PPT什么的，实验方面就不怎么安排硬性任务了（工程日记到这也开始混乱起来，可以想见当时大约是有一、、忙碌）</p>
 <p>按记忆下午似乎简短看了一下 PPT 制作进度；然后 Kafka 小队出现了消费者无法读消息的问题，于是开始 debug ：输出了巨多中间结果，但始终报 <code>RDD is empty</code>。临下课求助老师，老师说他边发边读是ok的，我们一试果然如此！</p>
