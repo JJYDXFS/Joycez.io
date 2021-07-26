@@ -210,7 +210,7 @@
 <h4 id="开始瞎搞"><a href="#开始瞎搞" class="headerlink" title="开始瞎搞"></a>开始瞎搞</h4><p>我开始这里看看、那里改改，然后观察有没有发生变化（原始人类实锤！不过我还是有做备份的，不要莽）在 <code>demo.css</code> 里我修改了字体文件路径，然后 demo 页面可以正常显示 lofter 图标了！然而相同的操作并没有在实际页面中生效，我想我可能得放弃了……</p>
 <h4 id="福至心灵"><a href="#福至心灵" class="headerlink" title="福至心灵"></a>福至心灵</h4><p>要不怎么说强迫症呢，能轻易妥协都不能说是强迫症。在干了点别的事儿之后我又来折腾这个图标了。这回我大胆假设、小心求证、控制变量、逐步逼近真相。终于让我发现只要我改动 <code>iconfont.css</code> 里 <code>.woff2</code> 的 url 指向，页面图标就会全部消失，看来最终起作用的字体文件应该就是它</p>
 <p>在搜索了这一行引入的含义之后，我发现 <code>base64</code> 后面的那串超长乱码就是 <code>.woff2</code> 文件编码所得。由于手头的机子没有 base64 编码工具，就找了个转码工具 <a target="_blank" rel="noopener" href="https://hellogreg.github.io/woff2base/">Woff2Base</a></p>
-<p>替换编码之后 lofter 图标果然成功显示了！但是看上去比别的图标大了一点。想到设置显示的大小都是一样的，估计问题出在图标本身，这要处理一下倒也不是不行，用 AI 改一下大小再导出 svg 估计就可以 …… 吧。算了！我先忍忍，强迫症累了！</p>
+<p>替换编码之后 lofter 图标果然成功显示了！但是看上去比别的图标大了一点。想到设置显示的大小都是一样的，估计问题出在图标本身。再用 <a target="_blank" rel="noopener" href="https://kekee000.github.io/fonteditor/">FontEditor</a> 对图标重新缩放一下好了。用了和 Github 图标一样的尺寸，强迫症表示这下终于舒服了！</p>
 
         </div>
 
